@@ -16,8 +16,8 @@ def print_list(items):
         3
         9
     """
-
-    print("the wrong thing")
+    for i in items:
+        print(i)
 
 
 def long_words(words):
@@ -36,8 +36,12 @@ def long_words(words):
         >>> long_words(["all", "are", "tiny"])
         []
     """
+    ls = []
+    for i in words:
+        if len(i) > 4:
+            ls.append(i)
 
-    return ['the wrong thing']
+    return ls
 
 
 def n_long_words(words, n):
@@ -53,8 +57,12 @@ def n_long_words(words, n):
         >>> n_long_words(["I", "like", "apples", "bananas", "you"], 5)
         ['apples', 'bananas']
     """
+    ls = []
+    for i in words:
+        if len(i) > n:
+            ls.append(i)
 
-    return ['the wrong thing']
+    return ls
 
 
 def smallest_int(numbers):
@@ -73,8 +81,15 @@ def smallest_int(numbers):
         >>> smallest_int([]) is None
         True
     """
+    if numbers == []:
+        return None
+    else:
+        smallest = numbers[0]
+    for i in numbers[1:]:
+        if i < smallest:
+            smallest = i
 
-    return 100
+    return smallest
 
 
 def largest_int(numbers):
@@ -93,8 +108,11 @@ def largest_int(numbers):
         >>> largest_int([]) is None
         True
     """
-
-    return 0
+    largest = None
+    for i in numbers:
+        if largest is None or i > largest:
+            largest = i
+    return largest
 
 
 def halvesies(numbers):
@@ -112,7 +130,8 @@ def halvesies(numbers):
         [0.5, 2.5]
     """
 
-    return []
+
+    return [i/2 for i in numbers]
 
 
 def word_lengths(words):
@@ -124,7 +143,7 @@ def word_lengths(words):
         [5, 3, 5, 4]
     """
 
-    return []
+    return [len(word) for word in words]
 
 
 def sum_numbers(numbers):
@@ -143,7 +162,12 @@ def sum_numbers(numbers):
         0
     """
 
-    return None
+    total = 0
+
+    for n in numbers:
+        total += n
+
+    return total
 
 
 def mult_numbers(numbers):
@@ -165,8 +189,12 @@ def mult_numbers(numbers):
         >>> mult_numbers([])
         1
     """
-
-    return None
+    product = 1
+    
+    for i in numbers:
+        product *= i
+    
+    return product
 
 
 def join_strings(words):
@@ -184,8 +212,11 @@ def join_strings(words):
         >>> join_strings([])
         ''
     """
+    combine = ""
+    for i in words:
+        combine += i
 
-    return "Not the right thing"
+    return combine
 
 
 def average(numbers):
@@ -206,8 +237,8 @@ def average(numbers):
     (Think of the best way to handle an empty input list, though,
     a feel free to provide a good solution here.)
     """
-
-    return 0
+    total = sum(numbers)
+    return total / len(numbers)
 
 
 def join_strings_with_comma(words):
@@ -227,7 +258,7 @@ def join_strings_with_comma(words):
         'Pretzel'
     """
 
-    return ""
+    return ", ".join(words)
 
 
 def reverse_list(items):
@@ -251,7 +282,8 @@ def reverse_list(items):
         ['apple', 'berry', 'cherry']
     """
 
-    return []
+
+    return items[::-1]
 
 
 def reverse_list_in_place(items):
@@ -273,8 +305,12 @@ def reverse_list_in_place(items):
         >>> orig
         ['I', 'love', 'cookies']
     """
+    for i in range(len(items) // 2):
+        temp = items[i]
+        items[i] = items[(i + 1) * -1]
+        items[(i + 1) * -1] = temp
 
-    return []
+    # return []
 
 
 def duplicates(items):
@@ -299,8 +335,14 @@ def duplicates(items):
         >>> orig
         ['apple', 'apple', 'berry']
     """
+    ls = []
+    items = sorted(items)
+    for i in range(1, len(items)):
+        if items[i] == items[i-1]:
+            if items[i] not in ls:
+                ls.append(items[i])
 
-    return []
+    return ls
 
 
 def find_letter_indices(words, letter):
@@ -327,8 +369,17 @@ def find_letter_indices(words, letter):
     ("o" does not appear in "jumps", so the result for that input is
     `None`.)
     """
+    ls = []
+    for word in words:
+        if letter in word:
+            for i in word:
+                if i == letter:
+                    ls.append(word.index(i))
+        else:
+            ls.append(None)
 
-    return []
+
+    return ls
 
 
 #####################################################################
